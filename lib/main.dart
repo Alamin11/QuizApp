@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 
+//created widget
+import './question.dart';
+
 void main(List<String> args) {
   runApp(MyApp());
 }
@@ -30,11 +33,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var _questions = [
+    var questions = [
       'What\'s your favorite color ?',
       'What\'s your favorite pet animal?',
     ];
-    _numOfQuestions = _questions.length;
+    _numOfQuestions = questions.length;
     return MaterialApp(
       title: 'QuizApp',
       theme: ThemeData(
@@ -46,7 +49,9 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              Text(_questions[_questionIndex]),
+              Question(
+                questions[_questionIndex],
+              ),
               ElevatedButton(
                 onPressed: _answerQuestion,
                 child: const Text('Answer 1'),

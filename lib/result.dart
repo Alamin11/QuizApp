@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class Result extends StatelessWidget {
+
   final VoidCallback resetQuiz;
   final int resultScore;
   const Result(this.resultScore, {Key? key, required this.resetQuiz})
@@ -16,6 +17,7 @@ class Result extends StatelessWidget {
       resultText = 'You have incredible personality';
     } else {
       resultText = 'You are mysterious!!!';
+
     }
     return resultText;
   }
@@ -26,16 +28,10 @@ class Result extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Text(
-          //   'Congratulations!!! You\'ve done it.',
-          //   style: TextStyle(
-          //     fontSize: 20,
-          //     fontWeight: FontWeight.w400,
-          //     color: Colors.teal,
-          //   ),
-          // ),
           GradientText(
+
             resultPhrase,
+
             style: const TextStyle(
               fontSize: 20.0,
             ),
@@ -46,7 +42,7 @@ class Result extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-            onPressed: resetQuiz,
+            onPressed: resetHandler,
             child: GradientText(
               'Restart',
               style: const TextStyle(

@@ -7,19 +7,17 @@ import 'package:quiz_app/result.dart';
 import './quiz.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  // ignore: prefer_typing_uninitialized_variables
-  //var _numOfQuestions;
   final _questions = const [
     {
       'questionText': 'What\'s your favorite color ?',
@@ -35,6 +33,7 @@ class _MyAppState extends State<MyApp> {
     {
       'questionText': 'What\'s your favorite pet animal?',
       'answers': [
+
         {'options': 'Cat', 'score': 1},
         {'options': 'Dog', 'score': 2},
         {'options': 'Lion', 'score': 5},
@@ -42,11 +41,13 @@ class _MyAppState extends State<MyApp> {
         {'options': 'Tiger', 'score': 4},
         {'options': 'Platipus', 'score': 6},
         {'options': 'Others', 'score': 7},
+
       ]
     },
     {
       'questionText': 'What\'s your favorite game ?',
       'answers': [
+
         {'options': 'Cricket', 'score': 1},
         {'options': 'Football', 'score': 2},
         {'options': 'Tenis', 'score': 4},
@@ -56,33 +57,40 @@ class _MyAppState extends State<MyApp> {
     },
     {
       'questionText':
-          'There is an argument of political opinions between your colleagues.One of them is speaking the same way you feel, you will - ',
+          'There is an argument of political opinions between your colleagues. One of them is speaking the same way you feel, you will - ',
       'answers': [
         {'options': 'Feel happy they are arguing', 'score': 3},
         {'options': 'Support but not join', 'score': 2},
         {'options': 'Support and join to win', 'score': 1},
         {'options': 'not give your opinion', 'score': 4},
         {'options': 'Others', 'score': 5},
+        
       ]
     },
     {
       'questionText': 'What\'s your favorite book?',
       'answers': [
+
         {'options': 'The Al-Quran', 'score': 1},
         {'options': 'The Alchemist', 'score': 2},
         {'options': 'Theory of Everything', 'score': 3},
         {'options': 'Evolution of History', 'score': 4},
         {'options': 'Others', 'score': 5},
+
+        
       ]
     },
   ];
   var _questionIndex = 0;
   var _totalScore = 0;
+
   void _resetQuiz() {
     setState(() {
       _questionIndex = 0;
+      _totalScore = 0;
     });
   }
+
 
   void _answerQuestion(int score) {
     _totalScore += score;
@@ -97,6 +105,7 @@ class _MyAppState extends State<MyApp> {
     //   print('no more questions');
     // }
     //print(_numOfQuestions);
+
   }
 
   @override
@@ -110,6 +119,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Personality Calculator'),
         ),
+
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(

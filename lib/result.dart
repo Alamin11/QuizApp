@@ -3,7 +3,22 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class Result extends StatelessWidget {
   final VoidCallback resetQuiz;
-  const Result({Key? key, required this.resetQuiz}) : super(key: key);
+  final int resultScore;
+  const Result(this.resultScore, {Key? key, required this.resetQuiz})
+      : super(key: key);
+  String get resultPhrase {
+    String resultText = 'Congratulations, You have no match!!!';
+    if (resultScore <= 14) {
+      resultText = 'You are awesome and innocent!!!';
+    } else if (resultScore <= 19) {
+      resultText = 'You are a leader';
+    } else if (resultScore <= 25) {
+      resultText = 'You have incredible personality';
+    } else {
+      resultText = 'You are mysterious!!!';
+    }
+    return resultText;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +35,7 @@ class Result extends StatelessWidget {
           //   ),
           // ),
           GradientText(
-            'Congratulations!!! You\'ve done it.',
+            resultPhrase,
             style: const TextStyle(
               fontSize: 20.0,
             ),

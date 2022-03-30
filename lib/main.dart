@@ -22,117 +22,62 @@ class _MyAppState extends State<MyApp> {
     {
       'questionText': 'What\'s your favorite color ?',
       'answers': [
-        {
-          'option': 'Red',
-          'score': 5,
-        },
-        {
-          'option': 'Green',
-          'score': 3,
-        },
-        {
-          'option': 'Blue',
-          'score': 6,
-        },
-        {
-          'option': 'White',
-          'score': 3,
-        },
-        {
-          'option': 'Pink',
-          'score': 7,
-        },
-        {
-          'option': 'Black',
-          'score': 8,
-        },
+        {'options': 'Red', 'score': 1},
+        {'options': 'Green', 'score': 2},
+        {'options': 'White', 'score': 4},
+        {'options': 'Pink', 'score': 3},
+        {'options': 'Black', 'score': 5},
+        {'options': 'Others', 'score': 6},
       ]
     },
     {
       'questionText': 'What\'s your favorite pet animal?',
       'answers': [
-        {
-          'option': 'Cat',
-          'score': 5,
-        },
-        {
-          'option': 'Dog',
-          'score': 6,
-        },
-        {
-          'option': 'Cow',
-          'score': 5,
-        },
-        {
-          'option': 'Goat',
-          'score': 7,
-        },
-        {
-          'option': 'Lion',
-          'score': 8,
-        },
-        {
-          'option': 'Tiger',
-          'score': 9,
-        },
+
+        {'options': 'Cat', 'score': 1},
+        {'options': 'Dog', 'score': 2},
+        {'options': 'Lion', 'score': 5},
+        {'options': 'Rabbit', 'score': 3},
+        {'options': 'Tiger', 'score': 4},
+        {'options': 'Platipus', 'score': 6},
+        {'options': 'Others', 'score': 7},
+
       ]
     },
     {
       'questionText': 'What\'s your favorite game ?',
       'answers': [
-        {
-          'Option': 'Cricket',
-          'score': 3,
-        },
-        {
-          'Option': 'Football',
-          'score': 4,
-        },
-        {
-          'Option': 'Ha-Du-Du',
-          'score': 8,
-        },
-        {
-          'Option': 'Kabadi',
-          'score': 8,
-        },
-        {
-          'Option': 'Tenis',
-          'score': 7,
-        },
-        {
-          'Option': 'Badminton',
-          'score': 6,
-        },
-        {
-          'option': 'Card',
-          'score': 8,
-        },
-        {
-          'option': 'Ludo',
-          'score': 5,
-        },
+
+        {'options': 'Cricket', 'score': 1},
+        {'options': 'Football', 'score': 2},
+        {'options': 'Tenis', 'score': 4},
+        {'options': 'Badminton', 'score': 3},
+        {'options': 'Others', 'score': 5},
+      ]
+    },
+    {
+      'questionText':
+          'There is an argument of political opinions between your colleagues. One of them is speaking the same way you feel, you will - ',
+      'answers': [
+        {'options': 'Feel happy they are arguing', 'score': 3},
+        {'options': 'Support but not join', 'score': 2},
+        {'options': 'Support and join to win', 'score': 1},
+        {'options': 'not give your opinion', 'score': 4},
+        {'options': 'Others', 'score': 5},
+        
       ]
     },
     {
       'questionText': 'What\'s your favorite book?',
       'answers': [
-        {
-          'option': 'The Al-Quran',
-          'score': 3,
-        },
-        {
-          'option': 'The Alchemist',
-          'score': 8,
-        },
-        {
-          'option': 'Theory of Everything',
-          'score': 9,
-        },
-        {
-          'option': 'Evolution of History',
-          'score': 10,
-        },
+
+        {'options': 'The Al-Quran', 'score': 1},
+        {'options': 'The Alchemist', 'score': 2},
+        {'options': 'Theory of Everything', 'score': 3},
+        {'options': 'Evolution of History', 'score': 4},
+        {'options': 'Others', 'score': 5},
+
+        
       ]
     },
   ];
@@ -146,21 +91,21 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  //final _numberOfQuestions = questions.length;
 
-  void _answerQuestion(int? score) {
-    _totalScore += score!;
+  void _answerQuestion(int score) {
+    _totalScore += score;
+    // print("TotalScore = $_totalScore");
     setState(() {
-      _questionIndex = (_questionIndex + 1);
-      //_totalScore = 0;
-      //print(_questionIndex);
+      _questionIndex = _questionIndex + 1;
     });
-    print(_questionIndex);
-    if (_questionIndex < _questions.length) {
-      print('You have more questions.');
-    } else {
-      print('No more questions');
-    }
+    // print("QuestionIndex: $_questionIndex");
+    // if (_questionIndex < _questions.length) {
+    //   print("You have more questions.");
+    // } else {
+    //   print('no more questions');
+    // }
+    //print(_numOfQuestions);
+
   }
 
   @override
@@ -174,13 +119,22 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Personality Calculator'),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questions: _questions,
-                questionIndex: _questionIndex,
-              )
-            : Result(_totalScore, _resetQuiz),
+
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: _questionIndex < _questions.length
+                ? Quiz(
+                    answerQuestion: _answerQuestion,
+                    questions: _questions,
+                    questionIndex: _questionIndex,
+                  )
+                : Result(
+                    _totalScore,
+                    resetQuiz: _resetQuiz,
+                  ),
+          ),
+        ),
       ),
     );
   }
